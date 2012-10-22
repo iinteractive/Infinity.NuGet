@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project name="SetValues" default="update">
+<!--
+	Properties:
+		Configuration-Path:
+			(Optional) Path to the configuration file to update.
+		
+		Api-Key:
+			Key for the api used for nuget
+			
+		Packages-Path:
+			Path to store the packages in
+		
+-->
+	<property name="Configuration-Path" value="Web.config" unless="${property::exists('Configuration-Path')}" />
+	<target name="update">
+		<loadfile file="${Configuration-Path}" property="configuration-file">
+			<filterchain>
+				<replacetokens>
+					<token key="API_KEY" value="${Api-Key}" />
+					
+					<token key="PACKAGES_PATH" value="${Packages-Path}" />
+				</replacetokens>
+			</filterchain>
+		</loadfile>
+
+		<delete if="${file::exists(Configuration-Path)}" file="${Configuration-Path}" />
+		
+		<echo file="${Configuration-Path}" message="${configuration-file}" />
+	</target>	
+</project>
