@@ -7,7 +7,7 @@ using NuGet.Server.DataServices;
 using NuGet.Server.Infrastructure;
 using RouteMagic;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(Infinity.NuGet.NuGetRoutes), "Start")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Infinity.NuGet.NuGetRoutes), "Start")]
 
 namespace Infinity.NuGet {
     public static class NuGetRoutes {
